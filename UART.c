@@ -1,13 +1,13 @@
 #include "msp430.h"
 #include <stdint.h>
-#include "UART.h"
+#include <stdio.h>
+#include "AUXCAM.h"
 #include "COMMON.h"
+#include "UART.h"
 
-uint8_t rxbuf[16];
-
-extern E_STATUS UART_Init(uint8_t port,uint32_t baud,uint8_t config_0,uint8_t config_1,uint8_t interrupt_config)
-{
-  static E_STATUS UART_Init_Status;
+E_STATUS UART_INIT(uint8_t port,uint32_t baud,uint8_t config_0,uint8_t config_1,uint8_t interrupt_config)
+{ 
+  static E_STATUS UARTINIT_status;
   if((port == UART_A0 || port == UART_A1) && (
                            (baud == BAUD_9600_16MHZ)    || 
                            (baud == BAUD_19200_16MHZ)   || 
@@ -34,7 +34,7 @@ extern E_STATUS UART_Init(uint8_t port,uint32_t baud,uint8_t config_0,uint8_t co
       IE2 |= interrupt_config;
       UCA0CTL1 &= ~UCSWRST;
       
-      UART_Init_Status = E_OK;
+      UARTINIT_status = E_OK;
     }
     else if(port == UART_A1 && (
                            (baud == BAUD_9600_16MHZ)    || 
@@ -53,77 +53,77 @@ extern E_STATUS UART_Init(uint8_t port,uint32_t baud,uint8_t config_0,uint8_t co
       IE2 |= interrupt_config;
       UCA1CTL1 &= ~UCSWRST;
       
-      UART_Init_Status = E_OK;
+      UARTINIT_status = E_OK;
     }
     else
     {
-      UART_Init_Status = E_NOK;
+      UARTINIT_status = E_NOK;
     }
   } 
     else
     {
-      UART_Init_Status = E_NOK;
+      UARTINIT_status = E_NOK;
     }
-    return UART_Init_Status;
+    return UARTINIT_status;
   }
 
-extern E_STATUS UART_Transmit(uint8_t port,uint8_t data[],uint8_t tx_length)
+E_STATUS UART_TRANSMIT(uint8_t port,uint8_t tx_data[],uint8_t tx_length)
 {
-  static E_STATUS UART_Transmit_Status;
+  static E_STATUS UARTTRANSMIT_status;
   if((port == UART_A0 || port == UART_A1) && tx_length <= MAX_BUFFER_SIZE)
   {
-    uint8_t tx_index = 0;
+    uint8_t tx_index = 0U;
     if(port == UART_A0)
     {
       while(tx_index < tx_length)
       {
-        UCA0TXBUF = data[tx_index];
-        while((UCA0STAT & 0x01) == 0x01){}
+        UCA0TXBUF = tx_data[tx_index];
+        while((UCA0STAT & 0x01U) == 0x01U){}
       
         tx_index++;
       }
-      UART_Transmit_Status = E_OK;
+      UARTTRANSMIT_status = E_OK;
     }
     else if(port == UART_A1)
     {
       while(tx_index < tx_length)
       {
-        UCA1TXBUF = data[tx_index];
-        while((UCA1STAT & 0x01) == 0x01){}
+        UCA1TXBUF = tx_data[tx_index];
+        while((UCA1STAT & 0x01U) == 0x01U){}
       
         tx_index++;
       }
-      UART_Transmit_Status = E_OK;
+      UARTTRANSMIT_status = E_OK;
     }
     else
     {
-      UART_Transmit_Status = E_NOK;
+      UARTTRANSMIT_status = E_NOK;
     }
   }
     else
     {
-      UART_Transmit_Status = E_NOK;
+      UARTTRANSMIT_status = E_NOK;
     }
-  return UART_Transmit_Status;
+  return UARTTRANSMIT_status;
 }
 
-extern E_STATUS UART_Recieve(uint8_t port,uint8_t rx_length)
+E_STATUS UART_RECIEVE(uint8_t port,uint8_t response[],uint8_t rx_length)
 {
-  static E_STATUS UART_Recieve_Status;
+  static E_STATUS UARTRECIEVE_status;
   if((port == UART_A0 || port == UART_A1) && rx_length != 0)
   {
-    uint8_t rx_index = 0;
+    uint8_t rx_index = 0U;
     if(port == UART_A0)
     {
       while(rx_index < rx_length)
       {
         while(!(IFG2&UCA0RXIFG)){}
         
-        IFG2 &= ~0x01;
-        rxbuf[rx_index] = UCA0RXBUF;
+        IFG2 &= ~0x01U;
+        response[rx_index] = UCA0RXBUF;
         rx_index++;
       }
-      UART_Recieve_Status = E_OK;
+      UARTRECIEVE_status = E_OK;
     }
     else if(port == UART_A1)
     {
@@ -131,20 +131,20 @@ extern E_STATUS UART_Recieve(uint8_t port,uint8_t rx_length)
       {
         while(!(IFG2&UCA1RXIFG)){}
         
-        IFG2 &= ~0x01;
-        rxbuf[rx_index] = UCA1RXBUF;
+        IFG2 &= ~0x01U;
+        response[rx_index] = UCA1RXBUF;
         rx_index++;
       }
-      UART_Recieve_Status = E_OK;
+      UARTRECIEVE_status = E_OK;
     }
     else
     {
-      UART_Recieve_Status = E_NOK;
+      UARTRECIEVE_status = E_NOK;
     }
   }
   else
   {
-    UART_Recieve_Status = E_NOK;
+    UARTRECIEVE_status = E_NOK;
   }
-  return UART_Recieve_Status;
+  return UARTRECIEVE_status;
 }

@@ -1,11 +1,15 @@
 #include "msp430.h"
 #include <stdint.h>
+#include <stdio.h>
 #include "COMMON.h"
 /*---------------------------------*/
 /*UART Perephiral Macros*/
 /*---------------------------------*/
 #define UART_A0     0U              
 #define UART_A1     1U
+
+#define UART_INTERRUPT_ENABLE_TX     0x02U
+#define UART_INTERRUPT_ENABLE_RX     0x01U
 
 #define MAX_BUFFER_SIZE     8U
 
@@ -19,7 +23,7 @@
 /*---------------------------------*/
 /*APIs Declaration*/
 /*---------------------------------------------------------------------------------------------------------------*/
-extern E_STATUS UART_Init(uint8_t port,uint32_t baud,uint8_t config_0,uint8_t config_1,uint8_t interrupt_config);
-extern E_STATUS UART_Transmit(uint8_t port,uint8_t data[],uint8_t tx_length);
-extern E_STATUS UART_Recieve(uint8_t port,uint8_t rx_length);
+extern E_STATUS UART_INIT(uint8_t port,uint32_t baud,uint8_t config_0,uint8_t config_1,uint8_t interrupt_config);
+extern E_STATUS UART_TRANSMIT(uint8_t port,uint8_t tx_data[],uint8_t tx_length);
+extern E_STATUS UART_RECIEVE(uint8_t port,uint8_t response[],uint8_t rx_length);
 

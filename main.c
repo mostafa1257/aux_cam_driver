@@ -4,33 +4,32 @@
 #include "AUXCAM.h"
 #include "COMMON.h"
 #include "UART.h"
-#include <string.h>
 
 void delay()
 {
-  double x;
-  for(x = 0;x<50000;x++)
+  int x;
+  for(x = 0;x<5000;x++)
   {}
 }
 
 int main(void) {
+  
+  static E_STATUS MAIN_status;
+  
   DCOCTL = CALDCO_16MHZ;
   BCSCTL1 = CALBC1_16MHZ;
-
   WDTCTL = WDTPW + WDTHOLD;
   
-  static E_STATUS MAIN_STATUS;
+  MAIN_status = CAMERA_INIT(UART_A0,115200U);
   
-  MAIN_STATUS = UART_Init(UART_A0,BAUD_115200_16MHZ,0x00,0x80,0x01);
-
-  uint8_t get_version[] = {0x56,0x00,0x11,0x00};
-  
-  
-while(!MAIN_STATUS)
-  {
-    delay();
-    MAIN_STATUS |= UART_Transmit(UART_A0,get_version,4);
-    MAIN_STATUS |= UART_Recieve(UART_A0,16);
-  }   
-  return 0;
+  while(!MAIN_status)
+    {
+      delay();
+      MAIN_status |= CAMERA_GET_VERSION();
+      delay();
+      MAIN_status |= CAMERA_FBUF_CTRL(FBUF_STOP_CURRENT_FRAME);
+      delay();
+      MAIN_status |= CAMERA_GET_FBUF_LEN(FBUF_TYPE_CURRENT_FRAME); 
+    }   
+    return 0;
 }

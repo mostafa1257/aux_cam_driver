@@ -17,6 +17,9 @@
     <debug>0</debug>
   </configuration>
   <file>
+    <name>$PROJ_DIR$\AUXCAM.c</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\AUXCAM.h</name>
   </file>
   <file>
