@@ -70,7 +70,7 @@ E_STATUS UART_INIT(uint8_t port,uint32_t baud,uint8_t config_0,uint8_t config_1,
 E_STATUS UART_TRANSMIT(uint8_t port,uint8_t tx_data[],uint8_t tx_length)
 {
   static E_STATUS UARTTRANSMIT_status;
-  if((port == UART_A0 || port == UART_A1) && tx_length <= MAX_BUFFER_SIZE)
+  if(port == UART_A0 || port == UART_A1)
   {
     uint8_t tx_index = 0U;
     if(port == UART_A0)

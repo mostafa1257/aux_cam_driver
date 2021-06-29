@@ -34,6 +34,7 @@
 #define GEN_VERSION_RESPONSE_LENGTH      16U
 #define FBUF_CTRL_RESPONSE_LENGTH        5U
 #define GET_FBUF_LEN_RESPONSE_LENGTH     9U
+#define FBUF_BYTES_TO_READ               96U
 /*-----------------------------------------*/
 /*Commands*/
 /*----------------------------*/
@@ -57,13 +58,18 @@
 #define FBUF_RESUME_FRAME           0x02U
 #define FBUF_STEP_FRAME             0x03U
 /*---------------------------------------*/
+/*System Variables*/
+/*---------------------------*/
+static uint8_t  HS_UART_PORT;
+static uint16_t BUFFER_SIZE;
+/*--------------------------*/
 /*Request Commands*/
 /*-----------------------------------------------------------*/
 static uint8_t CMD_SYSTEM_RESET[SYSTEM_RESET_COMMAND_LENGTH];
 static uint8_t CMD_GEN_VERSION[GEN_VERSION_COMMAND_LENGTH];
 static uint8_t CMD_FBUF_CTRL[FBUF_CTRL_COMMAND_LENGTH];  
 static uint8_t CMD_GET_FBUF_LEN[GET_FBUF_LEN_COMMAND_LENGTH]; 
-static uint8_t CMD_READ_FBUF[];    
+static uint8_t CMD_READ_FBUF[READ_FBUF_COMMAND_LENGTH];    
 /*-----------------------------------------------------------*/
 /*Response Buffers*/
 /*------------------------------------------------------------*/
@@ -71,12 +77,8 @@ static uint8_t RES_SYSTEM_RESET[SYSTEM_RESET_RESPONSE_LENGTH];
 static uint8_t RES_GEN_VERSION[GEN_VERSION_RESPONSE_LENGTH];
 static uint8_t RES_FBUF_CTRL[FBUF_CTRL_RESPONSE_LENGTH];
 static uint8_t RES_GET_FBUF_LEN[GET_FBUF_LEN_RESPONSE_LENGTH];
+static uint8_t RES_READ_FBUF[5 + FBUF_BYTES_TO_READ + 5];
 /*------------------------------------------------------------*/
-/*System Variables*/
-/*---------------------------*/
-static uint8_t  HS_UART_PORT;
-static uint16_t BUFFER_SIZE;
-/*---------------------------*/
 /*APIs Declaration*/
 /*------------------------------------------------------------------*/
 extern E_STATUS CAMERA_INIT(uint8_t uart_port,uint32_t camera_baud);
@@ -84,4 +86,4 @@ extern E_STATUS CAMERA_RESET(void);
 extern E_STATUS CAMERA_GET_VERSION(void);
 extern E_STATUS CAMERA_FBUF_CTRL(uint8_t control_flag);
 extern E_STATUS CAMERA_GET_FBUF_LEN(uint8_t fbuf_type);
-extern E_STATUS CAMERA_READ_FBUF(uint8_t fbuf_type,uint32_t start_address,uint8_t data_length[4],uint8_t delay[2]);
+extern E_STATUS CAMERA_READ_FBUF(uint8_t fbuf_type);

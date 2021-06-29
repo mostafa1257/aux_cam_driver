@@ -9,7 +9,7 @@ TriggerName=main
 LimitSize=0
 ByteLimit=50
 [DebugChecksum]
-Checksum=401544010
+Checksum=1246729648
 [EEM State Storage]
 Buffer=BAAAAAAADAAAAAAAAAAAAAAA
 [EEM Sequencer]
@@ -77,10 +77,7 @@ Category=_ 0
 LoggingEnabled=_ 0
 LogFile=_ ""
 [Breakpoints]
-Bp0=_ "STD_CODE" "{$PROJ_DIR$\main.c}.27.7" 1 0 0 0 "" 0 ""
-Bp1=_ "STD_CODE" "{$PROJ_DIR$\main.c}.29.7" 1 0 0 0 "" 0 ""
-Bp2=_ "STD_CODE" "{$PROJ_DIR$\main.c}.31.7" 1 0 0 0 "" 0 ""
-Count=3
+Count=0
 [FET]
 Clock mode=46
 Extended Clock mode=1

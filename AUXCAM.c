@@ -25,6 +25,8 @@ E_STATUS CAMERA_INIT(uint8_t uart_port,uint32_t camera_baud)
     HS_UART_PORT = uart_port;
     
     CAMERAINIT_status |= UART_INIT(HS_UART_PORT,BAUD_115200_16MHZ,0x00U,0x80U,UART_INTERRUPT_ENABLE_RX);
+    
+    return CAMERAINIT_status;
   }
   else
   {
@@ -102,4 +104,42 @@ E_STATUS CAMERA_GET_FBUF_LEN(uint8_t fbuf_type)
     CAMERAGETFBUFLEN_status = E_NOK;
   }
   return CAMERAGETFBUFLEN_status;
+}
+
+E_STATUS CAMERA_READ_FBUF(uint8_t fbuf_type)
+{
+  static E_STATUS CAMERAREADFBUF_status;
+  
+  if(fbuf_type == FBUF_TYPE_CURRENT_FRAME || fbuf_type == FBUF_TYPE_NEXT_FRAME)
+  {
+    static uint32_t address_to_read;
+    while(address_to_read < BUFFER_SIZE + FBUF_BYTES_TO_READ)
+    {
+      CMD_READ_FBUF[4] = fbuf_type;
+      
+      CMD_READ_FBUF[6] = (address_to_read >> 24U) & 0xFFU;
+      CMD_READ_FBUF[7] = (address_to_read >> 16U) & 0xFFU;
+      CMD_READ_FBUF[8] = (address_to_read >>  8U) & 0xFFU;
+      CMD_READ_FBUF[9] =  address_to_read         & 0xFFU;
+      
+      CMD_READ_FBUF[13] = FBUF_BYTES_TO_READ;
+      
+      CMD_READ_FBUF[14] = 1U;
+      CMD_READ_FBUF[15] = 0U;
+      
+      CAMERAREADFBUF_status |= UART_TRANSMIT(HS_UART_PORT,CMD_READ_FBUF,READ_FBUF_COMMAND_LENGTH);
+      CAMERAREADFBUF_status |= UART_RECIEVE(HS_UART_PORT,RES_READ_FBUF,5 + FBUF_BYTES_TO_READ + 5);
+      
+      address_to_read += FBUF_BYTES_TO_READ;
+      
+      CAMERAREADFBUF_status |= UART_TRANSMIT(UART_A1,RES_READ_FBUF,5 + FBUF_BYTES_TO_READ + 5);
+    }
+    
+    return CAMERAREADFBUF_status;
+  }
+  else
+  {
+    CAMERAREADFBUF_status = E_NOK;
+  }
+  return CAMERAREADFBUF_status;
 }

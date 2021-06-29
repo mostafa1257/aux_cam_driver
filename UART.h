@@ -11,8 +11,6 @@
 #define UART_INTERRUPT_ENABLE_TX     0x02U
 #define UART_INTERRUPT_ENABLE_RX     0x01U
 
-#define MAX_BUFFER_SIZE     8U
-
 #define BAUD_9600_16MHZ       1666U
 #define BAUD_19200_16MHZ      833U
 #define BAUD_38400_16MHZ      416U

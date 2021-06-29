@@ -6,84 +6,83 @@
   <configuration>
     <name>Debug</name>
     <outputs>
+      <file>$PROJ_DIR$\AUXCAM.h</file>
+      <file>$PROJ_DIR$\UART.c</file>
       <file>$PROJ_DIR$\AUXCAM.c</file>
       <file>$PROJ_DIR$\COMMON.h</file>
-      <file>$PROJ_DIR$\UART.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.r43</file>
-      <file>$PROJ_DIR$\UART.h</file>
-      <file>$PROJ_DIR$\AUXCAM.h</file>
       <file>$PROJ_DIR$\main.c</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Defaults.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\UART.pbi</file>
-      <file>$PROJ_DIR$\Debug\Exe\test.ulp</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Threads.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\UART.r43</file>
-      <file>$TOOLKIT_DIR$\inc\msp430.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\test.pbd</file>
+      <file>$PROJ_DIR$\UART.h</file>
       <file>$TOOLKIT_DIR$\config\linker\multiplier.xcl</file>
-      <file>$TOOLKIT_DIR$\lib\dlib\dl430xlsfn.r43</file>
-      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\AUXCAM.r43</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\c\ycheck.h</file>
-      <file>$TOOLKIT_DIR$\lib\dlib\dl430xlsfn.h</file>
-      <file>$TOOLKIT_DIR$\config\linker\lnk430f2618.xcl</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
       <file>$TOOLKIT_DIR$\inc\dlib\c\ystdio.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\stdint.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\AUXCAM.r43</file>
+      <file>$TOOLKIT_DIR$\lib\dlib\dl430xlsfn.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\ysizet.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\ycheck.h</file>
       <file>$TOOLKIT_DIR$\inc\in430.h</file>
       <file>$TOOLKIT_DIR$\inc\dlib\c\yvals.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\AUXCAM.pbi</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\c\xencoding_limits.h</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\c\stdio.h</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\c\stdint.h</file>
-      <file>$PROJ_DIR$\Debug\Exe\test.d43</file>
-      <file>$TOOLKIT_DIR$\doc\infocenter\index.ENU.html</file>
       <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Product.h</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\c\ysizet.h</file>
+      <file>$TOOLKIT_DIR$\inc\msp430.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\test.pbd</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\xencoding_limits.h</file>
       <file>$TOOLKIT_DIR$\inc\msp430f2618.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\UART.r43</file>
+      <file>$PROJ_DIR$\Debug\Exe\test.ulp</file>
+      <file>$PROJ_DIR$\Debug\Obj\AUXCAM.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\stdio.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.r43</file>
+      <file>$TOOLKIT_DIR$\lib\dlib\dl430xlsfn.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Defaults.h</file>
+      <file>$TOOLKIT_DIR$\config\linker\lnk430f2618.xcl</file>
+      <file>$PROJ_DIR$\Debug\Exe\test.d43</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Threads.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\UART.pbi</file>
     </outputs>
-    <file>
-      <name>$PROJ_DIR$\AUXCAM.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 25</file>
-        </tool>
-        <tool>
-          <name>ICC430</name>
-          <file> 17</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 1 16 18 31 27 33 23 24 12 28 5 4 7 10 19 22 26 32</file>
-        </tool>
-        <tool>
-          <name>ICC430</name>
-          <file> 12 33 23 16 28 18 24 7 19 31 26 10 27 32 22 5 1 4</file>
-        </tool>
-      </inputs>
-    </file>
     <file>
       <name>$PROJ_DIR$\UART.c</name>
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 8</file>
+          <file> 32</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 11</file>
+          <file> 21</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 10 18 12 1 24 27 23 19 28 5 4 33 16 7 31 32 26 22</file>
+          <file> 17 16 3 28 25 14 15 12 5 8 0 20 24 13 31 27 19 7</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 12 33 23 16 28 18 24 7 19 31 26 10 27 32 22 5 1 4</file>
+          <file> 17 20 14 24 8 13 15 28 27 16 19 31 25 12 7 0 3 5</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\AUXCAM.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 23</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 9</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 17 16 3 28 25 14 15 12 5 8 0 20 24 13 31 27 19 7</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 17 20 14 24 8 13 15 28 27 16 19 31 25 12 7 0 3 5</file>
         </tool>
       </inputs>
     </file>
@@ -92,21 +91,21 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 21</file>
+          <file> 11</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 3</file>
+          <file> 26</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 26 12 23 24 1 27 33 16 18 28 5 22 7 10 19 31 32 4</file>
+          <file> 13 27 14 25 20 24 31 15 3 8 0 28 16 12 17 5 19 7</file>
         </tool>
         <tool>
           <name>ICC430</name>
-          <file> 12 33 23 16 28 18 24 7 19 31 26 10 27 32 22 5 1 4</file>
+          <file> 17 20 14 24 8 13 15 28 27 16 19 31 25 12 7 0 3 5</file>
         </tool>
       </inputs>
     </file>
@@ -115,11 +114,11 @@
       <outputs>
         <tool>
           <name>ULP430</name>
-          <file> 9</file>
+          <file> 22</file>
         </tool>
         <tool>
           <name>XLINK</name>
-          <file> 29</file>
+          <file> 30</file>
         </tool>
       </outputs>
     </file>
@@ -128,7 +127,7 @@
       <inputs>
         <tool>
           <name>XLINK</name>
-          <file> 20 14 17 3 11 15</file>
+          <file> 29 6 9 26 21 10</file>
         </tool>
       </inputs>
     </file>
